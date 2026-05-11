@@ -1,0 +1,37 @@
+Step 2: Create all elements (drag from palette into the Model Tree)
+Business Layer
+Type	Name
+Business Actor	User
+Business Service	Answer Water Treatment Question
+Business Process	Ask Question → Get Answer
+Business Object	User Question
+Business Object	Answer
+Application Layer – Components & Services
+Type	Name
+Application Component	Chat Interface (Streamlit)
+Application Component	Agent Orchestrator (agent.py)
+Application Component	Query Classifier
+Application Component	Retriever (retriever.py)
+Application Component	Embedder (embeddings.py)
+Application Component	Water Quality Tool (tools.py)
+Application Component	Ingester / Chunker (ingest.py)
+Application Component	Vector Store (ChromaDB)
+Application Process	Tool‑Call Loop (explicit, per requirement)
+Application Service	Retrieval Service
+Application Service	Embedding Service
+Application Service	Tool Execution Service
+Data Object	PDF Documents
+Data Object	Text Chunks
+Data Object	Chunk Embeddings
+Data Object	Conversation History
+Data Object	Tool Schema
+Data Object	Water Quality Data
+External Application Service	Azure OpenAI API
+External Application Service	USGS Water Quality Portal
+Technology Layer
+Type	Name
+Node	Python Runtime
+System Software	ChromaDB (in‑process)
+Node	Local File System
+Technology Service	Azure OpenAI Endpoint
+Technology Service	USGS HTTPS API
