@@ -1,0 +1,78 @@
+flowchart TB
+    subgraph Business["Business Layer"]
+        U[User]
+        BS[Answer Water Treatment Question]
+        BP[Ask Question → Get Answer]
+    end
+
+    subgraph App["Application Layer"]
+        CI[Chat Interface]
+        AO[Agent Orchestrator]
+        QC[Query Classifier]
+        R[Retriever]
+        E[Embedder]
+        T[Water Quality Tool]
+        I[Ingester]
+        VS[Vector Store]
+        TL[Tool-Call Loop]
+        RS[Retrieval Service]
+        ES[Embedding Service]
+        TS[Tool Execution Service]
+        PDF[(PDF Documents)]
+        CH[(Text Chunks)]
+        EMB[(Chunk Embeddings)]
+        HIST[(Conversation History)]
+        SCHEMA[(Tool Schema)]
+        WQ[(Water Quality Data)]
+        AZ[Azure OpenAI API]
+        USGS[USGS API]
+    end
+
+    subgraph Tech["Technology Layer"]
+        PY[Python Runtime]
+        CHDB[ChromaDB]
+        FS[Local File System]
+        AZT[Azure OpenAI Endpoint]
+        USGST[USGS HTTPS API]
+    end
+
+    U -- assignment --> BS
+    BP -- realization --> BS
+    BP -- triggering --> CI
+    CI -- serving --> BP
+    AO -- composition --> QC
+    AO -- composition --> R
+    AO -- composition --> T
+    AO -- composition --> E
+    AO -- composition --> TL
+    TL -- serving --> TS
+    R -- serving --> RS
+    E -- serving --> ES
+    T -- serving --> TS
+    R -- access --> CH
+    R -- access --> EMB
+    I -- access --> PDF
+    I -- access --> CH
+    I -- access --> EMB
+    AO -- access --> HIST
+    AO -- access --> SCHEMA
+    T -- access --> WQ
+    E -- serving --> AZ
+    T -- serving --> USGS
+
+    CI -- assigned to --> PY
+    AO -- assigned to --> PY
+    R -- assigned to --> PY
+    E -- assigned to --> PY
+    T -- assigned to --> PY
+    I -- assigned to --> PY
+    VS -- assigned to --> CHDB
+    CHDB -- serving --> R
+    FS -- serving --> I
+    FS -- serving --> VS
+    AZT -- serving --> AZ
+    USGST -- serving --> USGS
+    PY -- flow --> CHDB
+    PY -- flow --> FS
+    PY -- flow --> AZT
+    PY -- flow --> USGST
