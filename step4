@@ -1,0 +1,27 @@
+Step 4: Create the three required views
+4.1 Layered View
+View → New View → Layered → name Layered View.
+
+Drag Business elements to the top, Application to the middle, Technology to the bottom.
+
+Use the Mermaid diagram below for a reference layout.
+
+Export as SVG: Exercise-2-<team-name>-layered.svg.
+
+4.2 Application Cooperation View
+View → New View → Application Cooperation → name App Cooperation.
+
+Drag only Application components, services, processes, data objects, external services.
+
+Show Serving, Composition, Access relationships.
+
+Export: Exercise-2-<team-name>-cooperation.svg.
+
+4.3 Technology Usage View
+View → New View → Technology Usage → name Tech Usage.
+
+Drag Technology nodes, system software, technology services.
+
+Show Assignment, Serving, Flow.
+
+Export: Exercise-2-<team-name>-technology.svg.
