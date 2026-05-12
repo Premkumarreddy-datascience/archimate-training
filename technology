@@ -1,25 +1,25 @@
 flowchart LR
-    subgraph Tech["Technology Layer"]
-        N1[Python Runtime]
-        S1[ChromaDB (in‑process)]
-        N2[Local File System]
-        T1[Azure OpenAI Endpoint]
-        T2[USGS HTTPS API]
+    subgraph Technology["Technology Layer"]
+        N1["Python Runtime"]
+        S1["ChromaDB (in-process)"]
+        N2["Local File System"]
+        T1["Azure OpenAI Endpoint"]
+        T2["USGS HTTPS API"]
     end
 
     subgraph Apps["Application Components (hosted)"]
-        CI[Chat Interface]
-        AO[Agent Orchestrator]
-        R[Retriever]
-        E[Embedder]
-        TW[Water Quality Tool]
-        I[Ingester]
-        VS[Vector Store]
+        CI["Chat Interface (Streamlit)"]
+        AO["Agent Orchestrator (agent.py)"]
+        R["Retriever (retriever.py)"]
+        E["Embedder (embeddings.py)"]
+        TW["Water Quality Tool (tools.py)"]
+        I["Ingester (ingest.py)"]
+        VS["Vector Store (ChromaDB)"]
     end
 
     subgraph Ext["External Application Services"]
-        AZ[Azure OpenAI API]
-        USGS[USGS Water Quality Portal]
+        AZ["Azure OpenAI API"]
+        USGS["USGS Water Quality Portal"]
     end
 
     CI -- assignment --> N1
