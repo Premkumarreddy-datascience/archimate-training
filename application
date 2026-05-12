@@ -1,0 +1,42 @@
+flowchart LR
+    subgraph App["Application Layer"]
+        AO[Agent Orchestrator]
+        QC[Query Classifier]
+        R[Retriever]
+        E[Embedder]
+        TW[Water Quality Tool]
+        I[Ingester]
+        VS[Vector Store]
+        TL[Tool‑Call Loop]
+        RS[Retrieval Service]
+        ES[Embedding Service]
+        TS[Tool Execution Service]
+        D1[(PDF Documents)]
+        D2[(Text Chunks)]
+        D3[(Chunk Embeddings)]
+        D4[(Conversation History)]
+        D5[(Tool Schema)]
+        D6[(Water Quality Data)]
+        AZ[Azure OpenAI API]
+        USGS[USGS Water Quality Portal]
+    end
+
+    AO -- composition --> QC
+    AO -- composition --> R
+    AO -- composition --> TW
+    AO -- composition --> E
+    AO -- composition --> TL
+    TL -- serving --> TS
+    R -- serving --> RS
+    E -- serving --> ES
+    TW -- serving --> TS
+    R -- access (read) --> D2
+    R -- access (read) --> D3
+    I -- access (write) --> D2
+    I -- access (write) --> D3
+    AO -- access (read/write) --> D4
+    AO -- access (read) --> D5
+    TW -- access (write) --> D6
+    I -- access (read) --> D1
+    E -- serving --> AZ
+    TW -- serving --> USGS
